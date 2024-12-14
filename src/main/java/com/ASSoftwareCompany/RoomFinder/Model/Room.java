@@ -17,6 +17,7 @@ public class Room {
     private double rent;
     private String description;
 
+
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private RoomOwner roomOwner;
