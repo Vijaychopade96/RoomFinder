@@ -1,13 +1,15 @@
 package com.ASSoftwareCompany.RoomFinder.Model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
-@Entity
+import lombok.Data;
+
+import java.util.List;
+
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 public class Room {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,5 +18,9 @@ public class Room {
     private String description;
 
     @ManyToOne
-    private User owner; // Owner of the room
+    @JoinColumn(name = "owner_id")
+    private RoomOwner roomOwner;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
+    private List<Inquiry> inquiries;
 }

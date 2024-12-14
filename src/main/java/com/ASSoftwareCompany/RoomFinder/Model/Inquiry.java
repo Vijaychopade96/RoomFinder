@@ -1,22 +1,23 @@
 package com.ASSoftwareCompany.RoomFinder.Model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
-@Entity
+import lombok.Data;
+
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 public class Inquiry {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long roomOwnerId;
+    private String clientName;
+    private String clientContact;
+    private String message;
+
     @ManyToOne
+    @JoinColumn(name = "room_id")
     private Room room;
-
-    @ManyToOne
-    private User boy;
-
-    private String status; // e.g., PENDING, ACCEPTED, REJECTED
 }
